@@ -1,0 +1,218 @@
+﻿<Window x:Class="mvvmTest2.DGView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:mvvmTest2"
+        xmlns:v="clr-namespace:mvvmTest2.ViewModels"
+        x:Name="DGWin"
+        Title="DataGrid Example"
+        WindowStartupLocation="CenterScreen"
+        Height="600" Width="1000"
+        Style="{StaticResource WinStyle}">
+
+
+    <Window.DataContext>
+        <v:DataGridViewModel/>
+    </Window.DataContext>
+
+
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="E" 
+                    Command="{Binding ClearCommand}"/>
+    </Window.InputBindings>
+
+
+    <StackPanel>
+
+        <DockPanel HorizontalAlignment="Stretch"
+                   VerticalAlignment="Center">
+            <Button Width="28"
+                    Height="28"
+                    DockPanel.Dock="Right"
+                    CommandParameter="{Binding ElementName=DGWin}"
+                    Command="{Binding CloseCommand}" >
+                <Grid Background="{StaticResource GrayBrush}">
+                    <Path Data="{StaticResource CloseIcon}"/>
+                </Grid>
+            </Button>
+
+            <Button Width="28"
+                    Height="28"
+                    DockPanel.Dock="Right"
+                    CommandParameter="{Binding ElementName=DGWin}"
+                    Command="{Binding MaxiCommand}" >
+                <Grid Background="{StaticResource GrayBrush}">
+                    <Path Data="{StaticResource MaxiIcon}"/>
+                </Grid>
+            </Button>
+
+            <Button Width="28"
+                    Height="28"
+                    DockPanel.Dock="Right"
+                    CommandParameter="{Binding ElementName=DGWin}"
+                    Command="{Binding MiniCommand}" >
+                <Grid Background="{StaticResource GrayBrush}">
+                    <Path Data="{StaticResource MiniIcon}" VerticalAlignment="Bottom"/>
+                </Grid>
+            </Button>
+
+
+            <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1 1 0 1">
+                <Border.InputBindings>
+                    <MouseBinding Gesture="LeftClick" 
+                                      CommandParameter="{Binding ElementName=DGWin}"
+                                      Command="{Binding DragCommand}"/>
+                </Border.InputBindings>
+                <StackPanel Orientation="Horizontal">
+                    <Label DockPanel.Dock="Left" 
+                           Content="{Binding ElementName=DGWin, Path=Title}"
+                           Foreground="{StaticResource AccentBrush}"/>
+                    <Rectangle Height="25" HorizontalAlignment="Stretch" Fill="#2d2d30"/>
+                </StackPanel>
+            </Border>
+        </DockPanel>
+        
+
+        <StackPanel Orientation="Horizontal" Margin="0 10">
+            <Label Content="First: " 
+                   Margin="0,10"
+                   VerticalAlignment="Center"/>
+            <TextBox Text="{Binding Model.First}" 
+                     Margin="10" 
+                     Width="200"
+                     local:FocusHelper.IsFocused="{Binding SelectFirstTb}"/>
+            <Label Content="Last: " 
+                   Margin="0,10"
+                   VerticalAlignment="Center"/>
+            <TextBox Text="{Binding Model.Last}" 
+                     Margin="10" 
+                     Width="200">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Return" 
+                                Command="{Binding InsertCommand}"/>
+                </TextBox.InputBindings>
+            </TextBox>
+            <Button Command="{Binding InsertCommand}" 
+                    Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <Grid Background="{StaticResource GrayBrush}">
+                        <Path Data="{StaticResource NewRowIcon}">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <RotateTransform Angle="180" CenterX="5" CenterY="5.3" />
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+                    <Label Content="Add"
+                           Background="{StaticResource GrayBrush}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+
+        <DataGrid Height="260" 
+                  Margin="10" 
+                  AutoGenerateColumns="True" 
+                  ItemsSource="{Binding Model.DTable}"
+                  CanUserAddRows="False" 
+                  IsReadOnly="True" 
+                  x:Name="DG1" SelectedItem="{Binding SelectedItem}" 
+                  Style="{StaticResource ResourceKey=DataGridStyle}" 
+                  RowStyle="{StaticResource DataGridRowStyle}">
+            <DataGrid.InputBindings>
+                <KeyBinding Key="Return" 
+                            CommandParameter="{Binding ElementName=DG1, Path=SelectedItems}" 
+                            Command="{Binding SelectCommand}"/>
+                <MouseBinding Gesture="LeftClick" 
+                              Command="{Binding FillCommand}"/>                
+            </DataGrid.InputBindings>
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" 
+                       TargetType="{x:Type DataGridColumnHeader}" >
+                    <Setter Property="Background" Value="#1e1e1e" />
+                    <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="1 1 1 1"/>
+                    <Setter Property="Margin" Value="-1,-1,0,0" />
+                    <Setter Property="Height" Value="28" />
+                    <Setter Property="Width" Value="auto"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+
+        </DataGrid>
+
+
+        <DataGrid Height="110" Margin="10" 
+                  AutoGenerateColumns="True" 
+                  ItemsSource="{Binding Model.DTable2}"
+                  CanUserAddRows="False" 
+                  IsReadOnly="True"
+                  Visibility="{Binding Visi}"
+                  Style="{StaticResource ResourceKey=DataGridStyle}" 
+                  RowStyle="{StaticResource DataGridRowStyle}">
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+                    <Setter Property="Background" Value="#1e1e1e" />
+                    <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="1 1 1 1"/>
+                    <Setter Property="Margin" Value="-1,-1,0,0" />
+                    <Setter Property="Height" Value="28" />
+                    <Setter Property="Width" Value="auto"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+
+
+        <DockPanel HorizontalAlignment="Stretch">
+            <Button Command="{Binding FillCommand}" 
+                    Margin="10,0"
+                    DockPanel.Dock="Left">
+                <StackPanel Orientation="Horizontal">
+                    <Grid Background="{StaticResource GrayBrush}">
+                        <Path Data="{StaticResource ListIcon}"/>
+                    </Grid>
+                    <Label Content="Fill"
+                           Background="{StaticResource GrayBrush}"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding ClearCommand}"
+                    DockPanel.Dock="Left">
+                <StackPanel Orientation="Horizontal">
+                    <Grid Background="{StaticResource GrayBrush}">
+                        <Path Data="{StaticResource CloseIcon}"/>
+                    </Grid>
+                    <Label Content="Clear"
+                           Background="{StaticResource GrayBrush}"/>
+                </StackPanel>
+            </Button>
+            <Button CommandParameter="{Binding ElementName=DG1, Path=SelectedItems}"
+                    Command="{Binding SelectCommand}"
+                    DockPanel.Dock="Left"
+                    Margin="10,0">
+                <StackPanel Orientation="Horizontal">
+                    <Grid Background="{StaticResource GrayBrush}">
+                        <Path Data="{StaticResource ArrowUpDownIcon}"/>
+                    </Grid>
+                    <Label Content="Selector"
+                           Background="{StaticResource GrayBrush}"/>
+                </StackPanel>
+            </Button>
+            <Label Content="Selected Item: "
+                   VerticalAlignment="Center"
+                   Margin="50 0 0 0"/>
+            <TextBox Text="{Binding SelectedName}"
+                     Width="200"
+                     DockPanel.Dock="Left"
+                     Margin="10, 0"/>
+            <Button Content="Close"
+                    CommandParameter="{Binding ElementName=DGWin}"
+                    Command="{Binding CloseCommand, Mode=OneWay}" 
+                    DockPanel.Dock="Right"
+                    Margin="10"/>
+            <Rectangle DockPanel.Dock="Right" Fill="{StaticResource BGBrush}" Width="20" Height="20"/>
+        </DockPanel>
+    </StackPanel>
+</Window>
