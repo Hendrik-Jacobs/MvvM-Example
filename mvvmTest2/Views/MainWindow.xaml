@@ -5,7 +5,7 @@
         x:Name="MainWin"
         Title="MainWindow" 
         WindowStartupLocation="CenterScreen"
-        Height="450" Width="800"
+        Height="700" Width="500"
         Style="{StaticResource WinStyle}">
        
     
@@ -13,109 +13,126 @@
         <local:MainViewModel/>
     </Window.DataContext>
 
-    <Grid x:Name="MainGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" 
+                    CornerRadius="7" Background="{StaticResource BGBrush}">
+        <Grid x:Name="MainGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Grid
+            <Grid
             Grid.Column="0" Grid.Row="1"
             Grid.ColumnSpan="3"
             Grid.RowSpan="3"
             x:Name="MatrixGrid"/>
 
-        <Button Width="10"
-                Height="10"
-                Grid.Column="0" Grid.Row="1"
-                CommandParameter="{Binding ElementName=MatrixGrid}"
-                Command="{Binding MatrixCommand}" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Margin="5"
-                Opacity="0.5"
-                Background="Transparent"
-                ToolTip="Enter the Matrix.">
-            <Grid>
-                <Path Data="{StaticResource CheckIcon}" 
+            <Button Width="10"
+                    Height="10"
+                    Grid.Column="0" Grid.Row="1"
+                    CommandParameter="{Binding ElementName=MatrixGrid}"
+                    Command="{Binding MatrixCommand}" 
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="5"
+                    Opacity="0.5"
+                    ToolTip="Enter the Matrix."
+                    Style="{StaticResource ButtonFrame}"
+                    Background="{StaticResource GrayBrush}">
+                <Grid>
+                    <Path Data="{StaticResource CheckIcon}" 
                       Width="6" Height="6"
                       Visibility="{Binding CheckVisi}"/>
-            </Grid>
-        </Button>
+                </Grid>
+            </Button>
 
 
-        <DockPanel HorizontalAlignment="Stretch"
+            <DockPanel HorizontalAlignment="Stretch"
                    VerticalAlignment="Center"
                    Grid.Column="0" Grid.ColumnSpan="3"
                    Grid.Row="0">
-            
-            <Button Width="28"
-                    Height="28"
-                    DockPanel.Dock="Right"
-                    CommandParameter="{Binding ElementName=MainWin}"
-                    Command="{Binding CloseCommand}" >
-                <Grid Background="{StaticResource GrayBrush}">
-                    <Path Data="{StaticResource CloseIcon}"/>
-                </Grid>
-            </Button>
 
-            <Button Width="28"
-                    Height="28"
-                    DockPanel.Dock="Right"
-                    CommandParameter="{Binding ElementName=MainWin}"
-                    Command="{Binding MaxiCommand}" >
-                <Grid Background="{StaticResource GrayBrush}">
-                    <Path Data="{StaticResource MaxiIcon}"/>
-                </Grid>
-            </Button>
+                <Button Width="28"
+                        Height="28"
+                        DockPanel.Dock="Right"
+                        CommandParameter="{Binding ElementName=MainWin}"
+                        Command="{Binding CloseCommand}" 
+                        BorderThickness="0 0 0 1"
+                        Style="{StaticResource ButtonFrame}">
+                    <Grid>
+                        <Path Data="{StaticResource CloseIcon}"/>
+                    </Grid>
+                </Button>
 
-            <Button Width="28"
-                    Height="28"
-                    DockPanel.Dock="Right"
-                    CommandParameter="{Binding ElementName=MainWin}"
-                    Command="{Binding MiniCommand}" >
-                <Grid Background="{StaticResource GrayBrush}">
-                    <Path Data="{StaticResource MiniIcon}" VerticalAlignment="Bottom"/>
-                </Grid>
-            </Button>
+                <Button Width="28"
+                        Height="28"
+                        DockPanel.Dock="Right"
+                        CommandParameter="{Binding ElementName=MainWin}"
+                        Command="{Binding MaxiCommand}"
+                        BorderThickness="0 0 1 1"
+                        Style="{StaticResource ButtonFrame}">
+                    <Grid>
+                        <Path Data="{StaticResource MaxiIcon}"/>
+                    </Grid>
+                </Button>
+
+                <Button Width="28"
+                        Height="28"
+                        DockPanel.Dock="Right"
+                        CommandParameter="{Binding ElementName=MainWin}"
+                        Command="{Binding MiniCommand}"
+                        BorderThickness="1 0 1 1"
+                        Style="{StaticResource ButtonFrame}">
+                    <Grid>
+                        <Path Data="{StaticResource MiniIcon}" VerticalAlignment="Bottom"/>
+                    </Grid>
+                </Button>
 
 
-            <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1 1 0 1">
-                <Border.InputBindings>
-                    <MouseBinding Gesture="LeftClick" 
+                <Border BorderBrush="{StaticResource AccentBrush}" 
+                        BorderThickness="0 0 0 1"
+                        Background="Transparent">
+                    <Border.InputBindings>
+                        <MouseBinding Gesture="LeftClick" 
                                       CommandParameter="{Binding ElementName=MainWin}"
                                       Command="{Binding DragCommand}"/>
-                </Border.InputBindings>
-                <StackPanel Orientation="Horizontal">
-                    <Label DockPanel.Dock="Left" 
+                    </Border.InputBindings>
+                    <StackPanel Orientation="Horizontal">
+                        <Label DockPanel.Dock="Left" 
                            Content="{Binding ElementName=MainWin, Path=Title}"
                            Foreground="{StaticResource AccentBrush}"/>
-                    <Rectangle Height="25" HorizontalAlignment="Stretch" Fill="{StaticResource BGBrush}"/>                    
-                </StackPanel>
-            </Border>
-        </DockPanel>
+                        <Rectangle Height="25" HorizontalAlignment="Stretch" Fill="{StaticResource BGBrush}"/>
+                    </StackPanel>
+                </Border>
+            </DockPanel>
 
-        
-        
-        <StackPanel Grid.Row="2" Grid.Column="1"
+
+
+            <StackPanel Grid.Row="2" Grid.Column="1"
                     Background="Transparent">
-            <Button Content="Datagrid Example" 
-                    Command="{Binding DataGridCommand}" 
-                    Width="200"
-                    Margin="0 0 0 20"/>
-            <Button Content="InputBinding Example" 
-                    Command="{Binding InputBindingCommand}"
-                    Width="200"/>
-        </StackPanel>
-
-        
-
-    </Grid>
+                <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" 
+                        CornerRadius="5"
+                        Margin="0 0 0 20">
+                    <Button Content="Datagrid Example" 
+                        Command="{Binding DataGridCommand}" 
+                        Width="200"
+                        Style="{StaticResource ButtonNoFrame}"/>
+                </Border>
+                <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" 
+                        CornerRadius="5">
+                    <Button Content="InputBinding Example" 
+                            Command="{Binding InputBindingCommand}"
+                            Width="200"                        
+                            Style="{StaticResource ButtonNoFrame}"/>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

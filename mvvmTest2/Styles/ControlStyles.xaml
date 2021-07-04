@@ -6,23 +6,26 @@
     <SolidColorBrush x:Key="BGBrush" Color="#2d2d30"/>
     <SolidColorBrush x:Key="TextBoxBGBrush" Color="#1e1e1e"/>
     <SolidColorBrush x:Key="TextBrush" Color="#e6e6e6"/>
-    
-    
-    <Style TargetType="Button">
+
+
+    <Style TargetType="Button" x:Key="ButtonNoFrame">
         <Setter Property="Height" Value="35"/>
         <Setter Property="Width" Value="100"/>
-        <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
-        <Setter Property="Background" Value="{StaticResource GrayBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
     </Style>
 
-    <Style TargetType="Grid">
-        <Setter Property="Background" Value="{StaticResource BGBrush}"/>
+
+    <Style TargetType="Button" x:Key="ButtonFrame">
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
     </Style>
 
     <Style TargetType="Window" x:Key="WinStyle">
-        <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
-        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Opacity" Value="0.85"/>
         <Setter Property="WindowStyle" Value="None"/>
         <Setter Property="AllowsTransparency" Value="True"/>
@@ -31,11 +34,16 @@
     </Style>
 
     <Style TargetType="StackPanel">
-        <Setter Property="Background" Value="#2d2d30"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
+    <Style TargetType="DockPanel">
+        <Setter Property="Background" Value="Transparent"/>
     </Style>
 
     <Style TargetType="Border">
         <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="Background" Value="{StaticResource GrayBrush}"/>
         <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
     </Style>
 
@@ -66,6 +74,7 @@
     <Style TargetType="DataGrid" x:Key="DataGridStyle">
         <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{StaticResource GrayBrush}"/>
     </Style>
 
     <Style TargetType="ToolTip">
