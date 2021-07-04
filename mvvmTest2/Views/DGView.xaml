@@ -122,14 +122,17 @@
 
 
             <DataGrid Height="260" 
-                  Margin="10" 
-                  AutoGenerateColumns="True" 
-                  ItemsSource="{Binding Model.DTable}"
-                  CanUserAddRows="False" 
-                  IsReadOnly="True" 
-                  x:Name="DG1" SelectedItem="{Binding SelectedItem}" 
-                  Style="{StaticResource ResourceKey=DataGridStyle}" 
-                  RowStyle="{StaticResource DataGridRowStyle}">
+                      Margin="10" 
+                      AutoGenerateColumns="True" 
+                      ItemsSource="{Binding Model.DTable}"
+                      CanUserAddRows="False" 
+                      IsReadOnly="True" 
+                      x:Name="DG1" SelectedItem="{Binding SelectedItem}" 
+                      Style="{StaticResource ResourceKey=DataGridStyle}" 
+                      RowStyle="{StaticResource DataGridRowStyle}"
+                      ScrollViewer.CanContentScroll="True"
+                      RowHeaderWidth="0" 
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <DataGrid.InputBindings>
                     <KeyBinding Key="Return" 
                             CommandParameter="{Binding ElementName=DG1, Path=SelectedItems}" 
@@ -155,13 +158,16 @@
 
 
             <DataGrid Height="110" Margin="10" 
-                  AutoGenerateColumns="True" 
-                  ItemsSource="{Binding Model.DTable2}"
-                  CanUserAddRows="False" 
-                  IsReadOnly="True"
-                  Visibility="{Binding Visi}"
-                  Style="{StaticResource ResourceKey=DataGridStyle}" 
-                  RowStyle="{StaticResource DataGridRowStyle}">
+                      AutoGenerateColumns="True" 
+                      ItemsSource="{Binding Model.DTable2}"
+                      CanUserAddRows="False" 
+                      IsReadOnly="True"
+                      Visibility="{Binding Visi}"
+                      Style="{StaticResource ResourceKey=DataGridStyle}" 
+                      RowStyle="{StaticResource DataGridRowStyle}"                      
+                      ScrollViewer.CanContentScroll="True"
+                      RowHeaderWidth="0" 
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
                         <Setter Property="Background" Value="#1e1e1e" />
