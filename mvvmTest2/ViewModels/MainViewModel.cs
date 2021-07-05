@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using mvvmTest2.ViewModels;
 using System.ComponentModel;
+using mvvmTest2.Views;
 
 namespace mvvmTest2
 {
@@ -18,6 +19,8 @@ namespace mvvmTest2
             MiniCommand = new RelayCommand(ExecuteMini, CanExecuteTrue);
             DragCommand = new RelayCommand(ExecuteDrag, CanExecuteTrue);
             MatrixCommand = new RelayCommand(ExecuteMatrix, CanExecuteTrue);
+            RotatingButtonCommand = new RelayCommand(ExecuteRotatingBtn, CanExecuteTrue);
+            CustomCheckCommand = new RelayCommand(ExecuteCustomCheck, CanExecuteTrue);
 
             CheckVisi = Visibility.Collapsed;
         }
@@ -46,24 +49,38 @@ namespace mvvmTest2
         public ICommand MiniCommand { get; set; }
         public ICommand DragCommand { get; set; }
         public ICommand MatrixCommand { get; set; }
+        public ICommand RotatingButtonCommand { get; set; }
+        public ICommand CustomCheckCommand { get; set; }
         #endregion Commands
 
 
         #region CanExecuteMethods
         public bool CanExecuteTrue(object parameter) => true;
+        #endregion CanExecuteMethods
+
+
+        #region ExecuteMethods
         private void OpenDataGrid(object parameter)
         {
             DGView dataGridView = new DGView();
             dataGridView.InitializeComponent();
             dataGridView.Show();
         }
-        #endregion CanExecuteMethods
-
-
-        #region ExecuteMethods
         private void OpenInputBindings(object parameter)
         {
             InputBindingWin window = new InputBindingWin();
+            window.InitializeComponent();
+            window.Show();
+        }
+        private void ExecuteRotatingBtn(object parameter)
+        {
+            RotateButtonWin window = new RotateButtonWin();
+            window.InitializeComponent();
+            window.Show();
+        }
+        private void ExecuteCustomCheck(object parameter)
+        {
+            CustomCheckWin window = new CustomCheckWin();
             window.InitializeComponent();
             window.Show();
         }

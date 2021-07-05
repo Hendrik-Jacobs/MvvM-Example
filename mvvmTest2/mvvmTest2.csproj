@@ -64,9 +64,13 @@
     <Compile Include="CustomClasses\SqliteAccess.cs" />
     <Compile Include="Models\ModelExample.cs" />
     <Compile Include="CustomClasses\RelayCommand.cs" />
+    <Compile Include="ViewModels\CheckViewModel.cs" />
     <Compile Include="ViewModels\DataGridViewModel.cs" />
     <Compile Include="ViewModels\InputBindingViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\CustomCheckWin.xaml.cs">
+      <DependentUpon>CustomCheckWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MatrixLabel.xaml.cs">
       <DependentUpon>MatrixLabel.xaml</DependentUpon>
     </Compile>
@@ -76,6 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomCheckWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -99,6 +107,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\RotateButtonWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

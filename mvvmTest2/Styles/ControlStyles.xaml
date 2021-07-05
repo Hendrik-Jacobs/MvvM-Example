@@ -43,6 +43,7 @@
 
     <Style TargetType="Border">
         <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Background" Value="{StaticResource GrayBrush}"/>
         <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
     </Style>

@@ -126,6 +126,7 @@ namespace mvvmTest2.ViewModels
             foreach (DataRowView row in parameter as IList)
             {
                 var r = Model.DTable2.NewRow();
+                r["ID"] = row["ID"].ToString();
                 r["First"] = row["First"].ToString();
                 r["Last"] = row["Last"].ToString();
                 Model.DTable2.Rows.Add(r);

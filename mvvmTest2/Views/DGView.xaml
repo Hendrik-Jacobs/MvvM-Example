@@ -123,7 +123,7 @@
 
             <DataGrid Height="260" 
                       Margin="10" 
-                      AutoGenerateColumns="True" 
+                      AutoGenerateColumns="False" 
                       ItemsSource="{Binding Model.DTable}"
                       CanUserAddRows="False" 
                       IsReadOnly="True" 
@@ -153,12 +153,16 @@
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     </Style>
                 </DataGrid.Resources>
-
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="130"/>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding First}" Width="130"/>
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding Last}" Width="130"/>
+                </DataGrid.Columns>
             </DataGrid>
 
 
             <DataGrid Height="110" Margin="10" 
-                      AutoGenerateColumns="True" 
+                      AutoGenerateColumns="False" 
                       ItemsSource="{Binding Model.DTable2}"
                       CanUserAddRows="False" 
                       IsReadOnly="True"
@@ -180,6 +184,11 @@
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     </Style>
                 </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="130"/>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding First}" Width="130"/>
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding Last}" Width="130"/>
+                </DataGrid.Columns>
             </DataGrid>
 
 
@@ -236,15 +245,15 @@
                      Width="200"
                      DockPanel.Dock="Left"
                      Margin="10, 0"/>
+                
                 <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" 
-                    CornerRadius="5" Margin="10">
+                    CornerRadius="5" Margin="10" Width="100">
                     <Button Content="Close"
                             CommandParameter="{Binding ElementName=DGWin}"
                             Command="{Binding CloseCommand, Mode=OneWay}" 
                             DockPanel.Dock="Right"
                             Style="{StaticResource ButtonNoFrame}"/>
-                </Border>
-                <Rectangle DockPanel.Dock="Right" Fill="{StaticResource BGBrush}" Width="20" Height="20"/>
+                </Border>                
             </DockPanel>
         </StackPanel>
     </Border>

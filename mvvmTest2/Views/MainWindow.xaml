@@ -126,9 +126,25 @@
                         Style="{StaticResource ButtonNoFrame}"/>
                 </Border>
                 <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" 
-                        CornerRadius="5">
+                        CornerRadius="5"
+                        Margin="0 0 0 20">
                     <Button Content="InputBinding Example" 
                             Command="{Binding InputBindingCommand}"
+                            Width="200"                        
+                            Style="{StaticResource ButtonNoFrame}"/>
+                </Border>
+                <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" 
+                        CornerRadius="5"                        
+                        Margin="0 0 0 20">
+                    <Button Content="Custom CheckBox Example" 
+                            Command="{Binding CustomCheckCommand}"
+                            Width="200"                        
+                            Style="{StaticResource ButtonNoFrame}"/>
+                </Border>
+                <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" 
+                        CornerRadius="5">
+                    <Button Content="Rotating Button Example" 
+                            Command="{Binding RotatingButtonCommand}"
                             Width="200"                        
                             Style="{StaticResource ButtonNoFrame}"/>
                 </Border>

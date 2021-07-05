@@ -108,7 +108,6 @@ LeftClick: Clear both TextBoxes";
 
 
         #region INotifyPropertyChanged Members  
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {
